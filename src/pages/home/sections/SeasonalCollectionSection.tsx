@@ -33,7 +33,7 @@ export function SeasonalCollectionSection() {
 
           {/* Primary large image */}
           <Link
-            to="/shop?collection=warmth"
+            to="/category/Outerwear"
             aria-label="Shop The Warmth Edit collection"
             className="group relative overflow-hidden rounded-sm md:col-span-2 md:row-span-2"
           >
@@ -61,7 +61,7 @@ export function SeasonalCollectionSection() {
 
           {/* Secondary image 1 */}
           <Link
-            to="/category/womens"
+            to="/category/Womens"
             aria-label="Shop Women's collection"
             className="group relative overflow-hidden rounded-sm"
           >
@@ -83,7 +83,7 @@ export function SeasonalCollectionSection() {
 
           {/* Secondary image 2 */}
           <Link
-            to="/category/mens"
+            to="/category/Mens"
             aria-label="Shop Men's collection"
             className="group relative overflow-hidden rounded-sm"
           >

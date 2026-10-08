@@ -6,7 +6,7 @@ import { ExclusiveOfferSection } from './sections/ExclusiveOfferSection'
 // import { FeaturedProductsSection } from './sections/FeaturedProductsSection'
 import { SeasonalCollectionSection } from './sections/SeasonalCollectionSection'
 import { CustomerReviewsSection } from './sections/CustomerReviewsSection'
-import { NewsletterSection } from './sections/NewsletterSection'
+// import { NewsletterSection } from './sections/NewsletterSection'
 
 export function HomePage() {
   return (
@@ -19,7 +19,7 @@ export function HomePage() {
       {/* <FeaturedProductsSection /> */}
       <SeasonalCollectionSection />
       <CustomerReviewsSection />
-      <NewsletterSection />
+      {/* <NewsletterSection /> */}
     </div>
   )
 }

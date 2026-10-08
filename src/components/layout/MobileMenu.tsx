@@ -19,12 +19,14 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
+  { label: "Home", href: "/" },
   { label: "Shop All", href: "/shop" },
   { label: "Women's", href: "/category/Womens" },
   { label: "Men's", href: "/category/Mens" },
   { label: "Outerwear", href: "/category/Outerwear" },
   { label: "Denim", href: "/category/Denim" },
   { label: "Accessories", href: "/category/Accessories" },
+  { label: "Offers", href: "/category/Offers" },
 ];
 
 interface MobileMenuProps {
@@ -214,6 +216,28 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 >
                   Saved Pieces (Wishlist)
                 </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/about"
+                  onClick={onClose}
+                  className="block py-2 font-sans text-sm text-secondary transition-colors duration-150 hover:text-primary"
+                >
+                  About Us
+                </Link>
+              </li>
+
+              <li>
+                {isAuthenticated && currentUser?.role === "admin" && (
+                <Link
+                  to="/admin"
+                  onClick={onClose}
+                  className="block py-2 font-sans text-sm text-secondary transition-colors duration-150 hover:text-primary"
+                >
+                  Admin Dashboard
+                </Link>
+                )}
               </li>
             </ul>
           </div>

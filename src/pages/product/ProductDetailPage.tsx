@@ -7,17 +7,11 @@ import { Button } from "@/components/ui/Button";
 import type { Product } from "@/types";
 import { useCart, useWishlist } from "@/hooks/AddUserItem";
 
-// interface ProductDetailPageProps {
-//   onAddToCart?: (productId: string) => void;
-//   onAddToWishlist?: (productId: string) => void;
-// }
-
 export function ProductDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<'notfound' | 'other' | null>(null);
-
 
   useEffect(() => {
     if (!id) {
@@ -50,32 +44,18 @@ export function ProductDetailPage() {
   }
 
   if (!product) return null;
-  // const {
-  //   handleWishlist,
-  // } = useWishlist(product);
 
-  //   const {
-  //   handleAddToCart,
-  // } = useCart(product);
-
-  // const mainImage = product.image[selectedIdx];
-  // const showUrgency = product.stock > 0 && product.stock <= 3;
-
-
- return <ProductDetails product={product} />;
+  return <ProductDetails product={product} />;
 }
-
 
 function ProductDetails({ product }: { product: Product }) {
   const [selectedIdx, setSelectedIdx] = useState(0);
 
-  const { handleAddToCart } = useCart(product);
-  const { handleWishlist } = useWishlist(product);
+  const { isInCart, handleAddToCart } = useCart(product);
+  const { isWishlisted, handleWishlist } = useWishlist(product);
 
   const mainImage = product.image[selectedIdx];
-
-  const showUrgency =
-    product.stock > 0 && product.stock <= 3;
+  const showUrgency = product.stock > 0 && product.stock <= 3;
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
@@ -126,7 +106,7 @@ function ProductDetails({ product }: { product: Product }) {
           </h1>
 
           <p className="font-sans text-2xl font-bold text-[var(--color-primary)]">
-            ${product.price}
+            ₹{product.price}
           </p>
 
           {showUrgency && (
@@ -144,11 +124,13 @@ function ProductDetails({ product }: { product: Product }) {
               variant="primary"
               size="md"
               onClick={handleAddToCart}
-              disabled={product.stock === 0}
+              disabled={product.stock === 0 || isInCart}
             >
               {product.stock === 0
                 ? "Sold Out"
-                : "Add to Cart"}
+                : isInCart
+                  ? "In your bag"
+                  : "Add to Cart"}
             </Button>
 
             <Button
@@ -156,8 +138,12 @@ function ProductDetails({ product }: { product: Product }) {
               size="md"
               onClick={handleWishlist}
             >
-              <Heart size={16} className="mr-2" />
-              Add to Wishlist
+              <Heart 
+                size={16} 
+                className="mr-2" 
+                fill={isWishlisted ? "currentColor" : "none"} 
+              />
+              {isWishlisted ? "Wishlisted" : "Add to Wishlist"}
             </Button>
           </div>
         </div>
@@ -165,3 +151,5 @@ function ProductDetails({ product }: { product: Product }) {
     </div>
   );
 }
+
+export default ProductDetailPage;

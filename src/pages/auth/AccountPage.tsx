@@ -97,7 +97,20 @@ function ShippingAddressCard({ user }: ShippingAddressCardProps) {
     if (!formData.postalCode.trim())
       newErrors.postalCode = "Postal code is required.";
     if (!formData.country.trim()) newErrors.country = "Country is required.";
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required.";
+    // Phone validation logic for Indian mobile numbers
+    const phoneTrimmed = formData.phone.trim();
+    if (!phoneTrimmed) {
+      newErrors.phone = "Phone number is required.";
+    } else {
+      // Regex matches 10 digits starting with 6-9, optionally with +91 or 91 country code
+      const indianPhoneRegex = /^(?:\+91|91)?[6-9]\d{9}$/;
+      // Clean the input to test against digits only (ignoring spaces, dashes, or +)
+      const cleanPhone = phoneTrimmed.replace(/[\s-]/g, "");
+      
+      if (!indianPhoneRegex.test(cleanPhone)) {
+        newErrors.phone = "Please enter a valid 10-digit Indian mobile number.";
+      }
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;

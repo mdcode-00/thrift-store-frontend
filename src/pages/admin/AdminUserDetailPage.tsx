@@ -85,7 +85,7 @@ export function AdminUserDetailPage() {
           {orders.map((order) => (
             <div key={order._id} className="flex items-center justify-between border border-border rounded-sm p-3 text-sm">
               <span className="font-medium text-foreground">{order.productName}</span>
-              <span className="text-secondary">${order.price} × {order.quantity}</span>
+              <span className="text-secondary">₹{order.price} × {order.quantity}</span>
               <span className="text-secondary text-xs uppercase">{order.paymentStatus}</span>
             </div>
           ))}

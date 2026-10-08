@@ -44,7 +44,7 @@ export function HeroSection() {
                 Shop Collection
               </Button>
               <Link
-                to="/category/womens"
+                to="/category/Womens"
                 className="inline-flex items-center gap-2 font-sans text-sm font-medium text-secondary hover:text-primary transition-colors duration-150 group"
               >
                 Explore Women&apos;s
@@ -59,7 +59,7 @@ export function HeroSection() {
             {/* Trust signals */}
             <div className="mt-12 flex items-center gap-6">
               <div>
-                <p className="font-serif text-2xl font-medium text-foreground">4,200+</p>
+                <p className="font-serif text-2xl font-medium text-foreground">1,200+</p>
                 <p className="font-sans text-[11px] uppercase tracking-wider text-secondary">Pieces sold</p>
               </div>
               <div className="h-8 w-px bg-border" aria-hidden="true" />

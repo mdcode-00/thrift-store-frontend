@@ -1,10 +1,9 @@
-﻿import { X } from 'lucide-react'
+﻿import { X, Truck } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 // ============================================================
 // AnnouncementBar — Thin top bar, dismissible
-// MASTER.md §5: First element above the header
 // ============================================================
 
 export function AnnouncementBar() {
@@ -15,17 +14,21 @@ export function AnnouncementBar() {
   return (
     <div
       role="banner"
-      className="relative flex items-center justify-center bg-foreground px-10 py-2.5 text-center text-white"
+      className="relative flex items-center justify-center bg-[#4a3525] px-10 py-2.5 text-center text-white shadow-sm"
     >
-      <p className="font-sans text-xs font-medium tracking-wide">
-        Free shipping on orders over $75 &mdash;{' '}
-        <Link
-          to="/shop"
-          className="underline underline-offset-2 hover:no-underline transition-all duration-150"
-        >
-          Shop now
-        </Link>
-      </p>
+      <div className="flex items-center gap-2">
+        <Truck size={15} className="text-white/90 shrink-0" aria-hidden="true" />
+        <p className="font-sans text-xs font-medium tracking-wide">
+          Enjoy <span className="font-semibold text-amber-200">Free Shipping</span> on all orders &mdash;{' '}
+          <Link
+            to="/shop"
+            className="underline underline-offset-2 hover:text-amber-200 transition-colors duration-150"
+          >
+            Shop now
+          </Link>
+        </p>
+      </div>
+
       <button
         onClick={() => setVisible(false)}
         aria-label="Dismiss announcement"

@@ -99,10 +99,10 @@ export function Header() {
           <Link
             to="/"
             className="mr-8 shrink-0 font-serif text-base font-medium tracking-tight text-foreground hover:text-primary transition-colors duration-150"
-            aria-label="Vintage Thrift Room — Home"
+            aria-label="Vintage Collection Room — Home"
           >
-            <span className="hidden sm:inline">Vintage Thrift Room</span>
-            <span className="sm:hidden">VTR</span>
+            <span className="hidden sm:inline">Vintage Collection-BHB</span>
+            <span className="sm:hidden">VC-BHB</span>
           </Link>
 
           {/* Desktop Nav */}

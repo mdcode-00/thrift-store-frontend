@@ -6,6 +6,7 @@ export interface CreateProductPayload {
   description: string;
   price:number;
   category: string;
+  type: 'upper' | 'lower' | 'accessory' | "all";
   stock: number;
   images: File[];
 }
@@ -17,6 +18,7 @@ export async function createProduct(payload: CreateProductPayload): Promise<Prod
   formData.append("price", payload.price.toString());
   formData.append("category", payload.category);
   formData.append("stock", payload.stock.toString());
+  formData.append("type", payload.type);
   payload.images.forEach((file) => formData.append('images', file));
 
   const {data} = await axiosInstance.post('/admin/create', formData , {

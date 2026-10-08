@@ -23,9 +23,7 @@ const ACCOUNT_LINKS = [
 
 const INFO_LINKS = [
   { label: 'About Us', href: '/about' },
-  { label: 'Sustainability', href: '/sustainability' },
-  { label: 'How We Source', href: '/sourcing' },
-  { label: 'Shipping & Returns', href: '/shipping' },
+  { label: 'Shipping & Returns', href: '/return-and-refund' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -54,7 +52,7 @@ export function Footer() {
             {/* Social links */}
             <div className="mt-6 flex items-center gap-3">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/vintage_collection_bhb?stkn=MXNkOGo2N3BuaDRqMA=="
                 aria-label="Follow us on Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -67,18 +65,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com"
-                aria-label="Follow us on Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-sm border border-border text-secondary hover:border-primary hover:text-primary transition-all duration-150"
-              >
-                <svg className="h-4 w-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-              <a
-                href="https://youtube.com"
+                href="http://www.youtube.com/@vintagecollection-bhb"
                 aria-label="Subscribe on YouTube"
                 target="_blank"
                 rel="noopener noreferrer"

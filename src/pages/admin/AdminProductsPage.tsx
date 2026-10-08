@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import { toast } from "react-hot-toast";
-import {fetchProducts} from "@/api/products";
+import {fetchProducts, searchProducts} from "@/api/products";
 import {deleteProduct} from "@/api/admin/products";
 import {Button} from "@/components/ui/Button";
 import {Skeleton} from "@/components/ui/Skeleton";
@@ -13,19 +13,28 @@ export function AdminProductPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   function loadProducts() {
     setLoading(true);
-    fetchProducts({page, limit: 20})
-    .then((data) => {
-      setProducts(data.products);
-      setTotalPages(data.pagination.totalPages);
-    })
-    .finally(() => setLoading(false));
+   const request = search.trim()
+      ? searchProducts(search.trim(), { page, limit: 20 })
+      : fetchProducts({ page, limit: 20 });
+
+    request
+      .then((data) => {
+        setProducts(data.products);
+        setTotalPages(data.pagination?.totalPages || 1);
+      })
+      .catch((error) => {
+        console.error("Failed to load products:", error);
+        toast.error("Failed to load products.");
+      })
+      .finally(() => setLoading(false));
   }
 
-  useEffect(loadProducts, [page]);
+  useEffect(loadProducts, [page , search]);
 
   async function handleDelete(id: string, name: string) {
    if (!window.confirm(`Delete "${name}"? This also removes its images from storage and cannot be undone.`)) return;
@@ -49,6 +58,17 @@ export function AdminProductPage() {
         <Button as={Link} to="/admin/products/new" variant="primary" size="md">
           + Add Product
         </Button>
+      </div>
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6 mb-6">
+        <input
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
+          placeholder="Search by name or Products..."
+          className="border border-border rounded-sm px-3 py-2 text-sm font-sans focus:outline-none focus:border-primary w-full sm:w-64"
+        />
       </div>
 
       {loading ? (
@@ -81,7 +101,7 @@ export function AdminProductPage() {
                     </td>
                     <td className="p-3 font-medium text-foreground whitespace-nowrap">{product.name}</td>
                     <td className="p-3 text-secondary whitespace-nowrap">{product.category}</td>
-                    <td className="p-3 text-foreground whitespace-nowrap">${product.price}</td>
+                    <td className="p-3 text-foreground whitespace-nowrap">₹{product.price}</td>
                     <td className="p-3 text-foreground">{product.stock}</td>
                     <td className="p-3">
                       <span className={product.status === 'available' ? 'text-green-700' : 'text-secondary'}>
@@ -124,7 +144,7 @@ export function AdminProductPage() {
                 <div className="grid grid-cols-2 gap-3 border-t border-border pt-3 mb-3">
                   <div>
                     <p className="text-[10px] uppercase tracking-wider text-secondary">Price</p>
-                    <p className="text-sm text-foreground mt-1">${product.price}</p>
+                    <p className="text-sm text-foreground mt-1">₹{product.price}</p>
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-wider text-secondary">Stock</p>

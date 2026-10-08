@@ -15,6 +15,7 @@ export interface Product {
   description: string
   price: number
   category: string
+  type: 'upper' | 'lower' | 'outerwear' | 'dress' | 'footwear' | 'accessory';
   image: ProductImage[]
   stock: number
   status: 'available' | 'sold'

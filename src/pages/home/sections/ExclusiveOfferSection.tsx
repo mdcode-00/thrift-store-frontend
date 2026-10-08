@@ -46,7 +46,7 @@ export function ExclusiveOfferSection() {
             <div className="mt-8">
               <Button
                 as={Link}
-                to="/shop?filter=sale"
+                to="/category/Offers"
                 variant="secondary"
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-primary"

@@ -16,6 +16,7 @@ export interface ProductListResponse {
 interface ProductQuery {
   page?: number
   limit?: number
+  type?: string;
   minPrice?: number
   maxPrice?: number
   sort?: 'price_asc' | 'price_desc'

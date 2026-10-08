@@ -34,7 +34,7 @@ export function LoginPage() {
 
   const from =
     (location.state as { from?: { pathname: string } })?.from?.pathname ||
-    "/account";
+    "/";
 
   if (isAuthenticated) {
     return (

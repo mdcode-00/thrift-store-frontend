@@ -96,7 +96,7 @@ export function AdminOrdersPage() {
                       <div className="text-xs">{order.buyerId?.email}</div>
                     </td>
                     <td className="p-3 text-foreground">{order.quantity}</td>
-                    <td className="p-3 text-foreground whitespace-nowrap">${(order.price * order.quantity).toFixed(2)}</td>
+                    <td className="p-3 text-foreground whitespace-nowrap">₹{(order.price * order.quantity).toFixed(2)}</td>
                     <td className="p-3"><StatusBadge status={order.paymentStatus} /></td>
                     <td className="p-3 text-secondary text-xs whitespace-nowrap">
                       {new Date(order.soldAt || order.createdAt).toLocaleDateString()}
@@ -126,7 +126,7 @@ export function AdminOrdersPage() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-wider text-secondary">Total</p>
-                    <p className="text-sm text-foreground mt-1">${(order.price * order.quantity).toFixed(2)}</p>
+                    <p className="text-sm text-foreground mt-1">₹{(order.price * order.quantity).toFixed(2)}</p>
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-wider text-secondary">Date</p>

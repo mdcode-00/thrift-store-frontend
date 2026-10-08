@@ -6,12 +6,19 @@ import { fetchProductById } from "@/api/products";
 import { createProduct, updateProduct } from "@/api/admin/products";
 
 const CATEGORIES = [
-  "Women's",
-  "Men's",
+  "Womens",
+  "Mens",
   "Outerwear",
   "Dresses",
   "Denim",
   "Accessories",
+  "Offers"
+];
+
+const TYPES = [
+  { value: "upper", label: "Upper (Shirts, Tops)" },
+  { value: "lower", label: "Lower (Jeans, Trousers)" },
+  { value: "accessory", label: "Accessory" },
 ];
 
 export function AdminProductFormPage() {
@@ -28,6 +35,7 @@ export function AdminProductFormPage() {
   const [existingImageUrls, setExistingImageUrls] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(isEditMode);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [type, setType] = useState(TYPES[0].value);
 
   useEffect(() => {
     if (!id) return;
@@ -37,6 +45,7 @@ export function AdminProductFormPage() {
         setDescription(product.description);
         setPrice(product.price);
         setCategory(product.category);
+        setType(product.type);
         setStock(product.stock);
         setExistingImageUrls(product.image.map((img) => img.url));
       })
@@ -74,6 +83,7 @@ export function AdminProductFormPage() {
           description,
           price: Number(price),
           category,
+          type: type as 'upper' | 'lower' | 'accessory',
           stock: Number(stock),
           images,
         });
@@ -164,6 +174,23 @@ export function AdminProductFormPage() {
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
                 {c}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="block font-sans text-xs font-semibold uppercase tracking-wider text-secondary mb-1">
+            Type
+          </label>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className="w-full border border-border rounded-sm p-2.5 font-sans text-sm bg-background focus:outline-none focus:border-primary"
+          >
+            {TYPES.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
               </option>
             ))}
           </select>

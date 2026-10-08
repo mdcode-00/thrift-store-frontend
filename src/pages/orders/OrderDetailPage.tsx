@@ -263,10 +263,10 @@ export function OrderDetailPage() {
               <DetailRow label="Category" value={order.category} />
               <DetailRow
                 label="Unit Price"
-                value={`$${order.price.toFixed(2)}`}
+                value={`₹${order.price.toFixed(2)}`}
               />
               <DetailRow label="Quantity" value={order.quantity} />
-              <DetailRow label="Total" value={`$${total.toFixed(2)}`} />
+              <DetailRow label="Total" value={`₹${total.toFixed(2)}`} />
               <DetailRow
                 label="Ordered On"
                 value={formatDate(order.soldAt || order.createdAt)}

@@ -153,7 +153,7 @@ export function CartPage() {
                         </h3>
                       </Link>
                       <p className="text-xs text-primary font-medium mt-1">
-                        ${item.product.price} each
+                        ₹{item.product.price} each
                       </p>
                     </div>
 
@@ -170,7 +170,7 @@ export function CartPage() {
                     <span className="text-xs text-secondary">Qty: {item.quantity}</span>
 
                     <span className="font-sans text-sm font-semibold text-foreground">
-                      ${item.product.price * item.quantity}
+                      ₹{item.product.price * item.quantity}
                     </span>
                   </div>
                 </div>
@@ -186,15 +186,15 @@ export function CartPage() {
             <div className="space-y-3 py-4 text-sm font-sans">
               <div className="flex justify-between text-secondary">
                 <span>Subtotal</span>
-                <span className="text-foreground font-medium">${total}</span>
+                <span className="text-foreground font-medium">₹{total}</span>
               </div>
               <div className="flex justify-between text-secondary">
                 <span>Shipping</span>
-                <span>{total >= 75 ? 'Free' : '$8.00'}</span>
+                <span>{total >= 75 ? 'Free' : '₹8.00'}</span>
               </div>
               <div className="border-t border-border pt-3 flex justify-between text-base font-semibold text-foreground">
                 <span>Estimated Total</span>
-                <span>${total >= 75 ? total : total + 8}</span>
+                <span>₹{total >= 75 ? total : total + 8}</span>
               </div>
             </div>
 
